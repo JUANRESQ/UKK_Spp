@@ -50,7 +50,7 @@
                                         @endif  --}}
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="username" name="username" 
+                                                id="username" name="username" autocomplete="off"
                                                 placeholder="Enter username Address...">
                                         </div>
                                         <div class="form-group">

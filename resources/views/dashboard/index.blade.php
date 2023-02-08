@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('judul', 'pembayaran terbaru')
+@section('judul', '')
 
 @section('content')
 

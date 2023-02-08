@@ -11,7 +11,7 @@ class DashboardController extends Controller
     public function dashboard(){
         $data = [
             'pembayaran' => Pembayaran::orderBy('id', 'DESC')->paginate(15),
-            // 'user' => User::find(auth()->User()->id)
+            'u' => User::find(auth()->User()->id)
          ];
          
         return view('dashboard.index', $data);

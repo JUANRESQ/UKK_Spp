@@ -1,60 +1,49 @@
 @extends('layout.dashboard')
 
-@section('judul', 'data petugas ')
+@section('judul', '')
 
 @section('content')
-
-
-<!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Data Petugas</div>
-                          {{-- <a href="{{ url('dashboard/data-petugas/create') }}" class="btn btn-success btn-rounded float-right mb-3">
-                             <i class="mdi mdi-plus-circle"></i> {{ __('Tambah Petugas') }}
-                          </a> --}}
+                  <a href="" class="btn btn-success mb-3">Tambah Petugas</a>
+                  @if (session()->has('true'))
+                  <div class="text-center " style="color: blue;font-weight:bold">{{ session('true') }}</div>
+                  @endif
                     <div class="table-responsive mb-3">
-                            <table class="table">
+                            <table class="table text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">NAMA</th>
                                         <th scope="col">LEVEL</th>
                                         <th scope="col">DIBUAT</th>
+                                        <th scope="col">ACTION</th>
                                 <th scope="col"></th>                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                             @foreach($users as $value)
                                     <tr>					    
-                                        <td>{{ $loop->iteration }}</td>
+                                        <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $value->username }}</td>
                                         <td>{{ $value->level }}</td>
                                         <td>{{ $value->created_at->format('d M, Y') }}</td>
                                         <td>										                           
-                                          <div class="hide-menu">
-                                            <a href="javascript:void(0)" class="text-dark" id="actiondd" role="button" data-toggle="dropdown">
-                                                   <i class="mdi mdi-dots-vertical"></i>
-                                            </a>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actiondd">
-                                                <a class="dropdown-item" href="{{ url('dashboard/data-petugas/'. $value->id .'/edit') }}"><i class="ti-pencil"></i> Edit </a>
-                                         @if(auth()->user()->id != $value->id)
-                                                    <form method="post" action="{{ url('dashboard/data-petugas', $value->id) }}" id="delete{{ $value->id }}">
-                                            @csrf
-                                            @method('delete')
-                                            
-                                            <button type="button" class="dropdown-item" onclick="deleteData({{ $value->id }})">
-                                                <i class="ti-trash"></i> Hapus
-                                            </button>	
-                                        
-                                        </form>	
-                                                  @endif
+                                            <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="" class="btn btn-primary">edit</a>
+                                                <button type="submit" name="submit" class="btn btn-danger d-inline">Delete</button>
+                                              </form>
+                                            </td>
+                                            </form>	
+                                             {{-- @endif --}}
                                             </div>
                                         </div>								
-                                </td>					
+                                    </td>					
                                     </tr>
                             @endforeach                                  
                                 </tbody>
@@ -84,6 +73,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 @section('sweet')
