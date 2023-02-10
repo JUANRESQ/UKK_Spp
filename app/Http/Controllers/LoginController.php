@@ -34,6 +34,18 @@ class LoginController extends Controller
 
     public function authUser(Request $req)
     {
+        // $credentials = Siswa::where('nisn', $req->nisn )->get([
+        //     'nisn' => ['required'],
+        //     'nama' => ['required'],
+        // ]);
+ 
+        // if (Auth::attempt($credentials)) {
+        //     $req->session()->regenerate();
+ 
+        //     return redirect('dashboard/siswa/index');
+        // }
+ 
+        // return back()->with('salah', 'maaf email atau password yang anda masukan salah!');
         $exists = Siswa::where('nisn', $req->nisn)->exists();
          
         if($exists) :
@@ -46,8 +58,8 @@ class LoginController extends Controller
               
               if(strtolower($nama) == strtolower($req->nama_siswa)) :
                  
-                    Session::put('nama', $nama);
                     Session::put('nisn', $req->nisn);
+                    Session::put('nama', $nama);
                     
                     return redirect('dashboard/siswa/index');
               else :

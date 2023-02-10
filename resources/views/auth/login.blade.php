@@ -61,7 +61,7 @@
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                       <p>apakah anda siswa <a class="small text-decoration-none" href="/login-siswa"> Kembali</a></p>
+                                       <p>apakah anda siswa <a class="small text-decoration-none" href="/"> Kembali</a></p>
                                     </div>
                                 </div>
                             </div>

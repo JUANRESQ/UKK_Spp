@@ -8,10 +8,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Data Petugas</div>
-                  <a href="" class="btn btn-success mb-3">Tambah Petugas</a>
-                  @if (session()->has('true'))
-                  <div class="text-center " style="color: blue;font-weight:bold">{{ session('true') }}</div>
+                  <a href="{{ url('dashboard/data-petugas/create') }}" class="btn btn-success mb-3">Tambah Petugas</a>
+                  @if (session()->has('Berhasil!'))
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('Berhasil!') }}</div>
                   @endif
+                  @if (session()->has('danger!'))
+                  <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('danger!') }}</div>
+              @endif
                     <div class="table-responsive mb-3">
                             <table class="table text-center">
                                 <thead>
@@ -32,10 +35,10 @@
                                         <td>{{ $value->level }}</td>
                                         <td>{{ $value->created_at->format('d M, Y') }}</td>
                                         <td>										                           
-                                            <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="" method="POST">
+                                            <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="{{ url('dashboard/data-petugas', $value->id) }}"  method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="" class="btn btn-primary">edit</a>
+                                                <a href="{{ url('dashboard/data-petugas/'. $value->id .'/edit') }}" class="btn btn-primary">edit</a>
                                                 <button type="submit" name="submit" class="btn btn-danger d-inline">Delete</button>
                                               </form>
                                             </td>

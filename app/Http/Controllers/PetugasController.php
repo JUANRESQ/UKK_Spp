@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PetugasController extends Controller
 {
@@ -16,7 +17,7 @@ class PetugasController extends Controller
     {
         $data = [
             'users' => User::orderBy('id', 'DESC')->paginate(10),
-            'ser' => User::find(auth()->user()->id)
+            'user' => User::find(auth()->user()->id)
          ];
          
         return view('dashboard.data-petugas.index', $data);
@@ -29,7 +30,11 @@ class PetugasController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'user' => User::find(auth()->user()->id)
+      ];
+      
+       return view('dashboard.data-petugas.create', $data);
     }
 
     /**
@@ -38,9 +43,35 @@ class PetugasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+             'min' => ':attribute minimal :min karakter!',
+             'unique' => ':attribute sudah digunakan!',
+             'max' => ':attribute maksimal :max karakter',
+       ];
+       
+       $req->validate([
+          'level' => 'required',
+          'usernama' => 'required|min:2',
+          'nama_petugas' => 'required|',
+          'password' => 'required|min:8'
+       ], $messages);
+       
+              if(User::create([
+                   'username' => $req->usernama,
+                   'nama_petugas' => $req->nama_petugas,
+                   'level' => $req->level,
+                   'password' => Hash::make($req->password)
+               ])) :
+                //   Alert::success('Berhasil!', 'Data User Berhasil di Tambahkan');
+             else :
+                // Alert::error('Terjadi Kesalahan!', 'Data User Gagal di Tambahkan');
+          endif;
+      
+ 
+          return redirect('dashboard/data-petugas')->with('Berhasil!', 'Data User Berhasil di Tambahkan');
     }
 
     /**
@@ -62,7 +93,12 @@ class PetugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'user' => User::find(auth()->user()->id),
+            'edit' => User::find($id)
+        ];
+        
+        return view('dashboard.data-petugas.edit', $data);
     }
 
     /**
@@ -85,6 +121,14 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // if($destroy = User::find($id)) :
+        //     $destroy->delete();
+        //       with('Berhasil!', 'Data Berhasil di Hapus');
+        // else :
+        //       with('Terjadi Kesalahan!', 'Data Gagal di Hapus');
+        // endif;   
+        // return back();
+        User::where('id', $id)->delete();
+        return back()->with('danger!', 'data berhasil dihapus');
     }
 }

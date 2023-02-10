@@ -49,7 +49,7 @@
                                                 placeholder="masukan nisn anda">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user @error('nama') is-invalid @enderror"
+                                            <input type="text" class="form-control form-control-user @error('nama') is-invalid @enderror"
                                             id="nama" name="nama" placeholder="masukan nama anda">
                                             @error('nama')
                                                  <span class="invalid-feedback" role="alert">
