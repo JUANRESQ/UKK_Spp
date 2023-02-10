@@ -1,23 +1,20 @@
-@extends('layouts.dashboard')
+@extends('layout.dashboard')
 
-@section('breadcrumb')
-   <li class="breadcrumb-item">Dashboard</li>
-   <li class="breadcrumb-item active">Histori</li>
-@endsection
+@section('judul' ,'')
 
 @section('content')
 
-   <div class="row">
-      <div class="col-md-12">
-      
+   <div class="col-md-12">     
          <div class="card">
             <div class="card-body">
                <div class="card-title">Histori Pembayaran</div>
-               
                   @foreach($pembayaran as $value)
                      <div class="border-top">
                         <div class="float-right">
-                           <i class="mdi mdi-check text-success"></i> {{ $value->created_at->format('d M, Y') }}
+                           @if (count($pembayaran) == 0)
+                           <i class="fa fa-solid fa-check"></i> {{ $value->created_at->format('d M, Y') }}
+                           @endif
+                           <i class="fa fa-solid fa-bookmark"></i> {{ $value->created_at->format('d M, Y') }}
                         </div>
                         <div class="mt-4 text-uppercase">
                            {{ $value->siswa->nama .' - '. $value->siswa->kelas->nama_kelas }}
@@ -46,12 +43,10 @@
                   
                   @if(count($pembayaran) == 0)
                       <div class="text-center">Tidak ada histori pembayaran</div>
-                  @endif
-               
+                  @endif            
             </div>
-         </div>
-         
-      </div>
+         </div>         
+  
    </div>
 
 @endsection

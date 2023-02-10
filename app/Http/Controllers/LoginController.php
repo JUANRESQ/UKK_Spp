@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Models\Siswa;
 
 class LoginController extends Controller
 {
@@ -31,19 +32,35 @@ class LoginController extends Controller
         return view('auth.login-siswa');
     }
 
-    public function authUser(Request $request)
+    public function authUser(Request $req)
     {
-        $credentials = $request->validate([
-            'nisn' => ['required'],
-            'nis' => ['required'],
-        ]);
- 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
- 
-            return redirect('/dashboard.siswa.index');
-        }
- 
+        $exists = Siswa::where('nisn', $req->nisn)->exists();
+         
+        if($exists) :
+              $siswa = Siswa::where('nisn', $req->nisn)->get();
+              
+              foreach($siswa as $val) :
+                  Session::put('id', $val->id);
+                  $nama = $val->nama;
+              endforeach;
+              
+              if(strtolower($nama) == strtolower($req->nama_siswa)) :
+                 
+                    Session::put('nama', $nama);
+                    Session::put('nisn', $req->nisn);
+                    
+                    return redirect('dashboard/siswa/index');
+              else :
+              
+                    //  Alert::error('Gagal Login!', 'NISN dan nama siswa tidak sesuai');
+                    return back()->with('gagal login', 'NISN dan nama siswa tidak sesuai' );
+                    
+              endif;
+              
+           else :
+            //   Alert::error('Gagal Login!', 'Data siswa dengan NISN ini tidak ditemukan');
+              return back()->with('gagal login', 'Data siswa dengan NISN ini tidak ditemukan');
+           endif;
         return back()->with('salah', 'maaf email atau password yang anda masukan salah!');
     }
     public function logout(){
@@ -52,6 +69,12 @@ class LoginController extends Controller
         return redirect('/login');
       
     }
+    // public function logout2(){
+      
+    //     Session::flush();
+    //     return redirect('/login');
+      
+    // }
 
     // public function login(){
     //     return view('auth.login');

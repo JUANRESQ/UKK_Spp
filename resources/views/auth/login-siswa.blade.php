@@ -41,16 +41,17 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
-                                    <form action="ActionLogin/Siswa" method="POST">
+                                    <form action="/loginsiswa" method="POST">
+                                        @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="nisn" name="nisn"
                                                 placeholder="masukan nisn anda">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
-                                            id="nis" name="nis" placeholder="masukan nis anda">
-                                            @error('password')
+                                            <input type="password" class="form-control form-control-user @error('nama') is-invalid @enderror"
+                                            id="nama" name="nama" placeholder="masukan nama anda">
+                                            @error('nama')
                                                  <span class="invalid-feedback" role="alert">
                                                  <strong>{{ $message }}</strong>
                                                  </span>

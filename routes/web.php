@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\SiswaLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,12 @@ Route::get('/login', [LoginController::class, 'login']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 route::get('logout', [LoginController::class, 'logout']);
 
-// isi
+// isi petugas/ admin
 Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::resource('/dashboard/data-petugas', PetugasController::class);
 Route::resource('/dashboard/entry-pembayaran', PembayaranController::class);
+Route::resource('/dashboard/history-pembayaran', HistoryController::class);
+
+
+// isi siswa
+route::get('/dashboardSiswa', [SiswaLoginController::class, 'index']);

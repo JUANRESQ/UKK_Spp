@@ -62,12 +62,11 @@
                     <span>entry pembayaran</span></a>
             </li>       
             <li class="nav-item active">
-                <a class="nav-link" href="/dashboard/data-petugas">
+                <a class="nav-link" href="/dashboard/history-pembayaran">
                     <i class="fa fa-solid fa-money-check"></i>
                     <span>History pembayaran</span></a>
             </li>       
             @endif
-
             
             @if (auth()->User()->level == 'admin')
 

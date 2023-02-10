@@ -102,7 +102,7 @@ class PembayaranController extends Controller
             'user' => User::find(auth()->user()->id)
          ];
          
-         return view('dashboard.entri-pembayaran.edit', $data);
+         return view('dashboard.entry-pembayaran.edit', $data);
     }
 
     /**

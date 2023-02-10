@@ -12,7 +12,7 @@
             <div class="card-body">
                <div class="card-title">Entri Pembayaran</div>
                
-                <form method="post" action="{{ url('dashboard/pembayaran') }}">
+                <form method="post" action="{{ url('dashboard/entry-pembayaran') }}">
                   @csrf
                   
                      <div class="form-group">
@@ -94,10 +94,10 @@
                                             <td>{{ $value->jumlah_bayar }}</td>
                                             <td>{{ $value->created_at->format('d M, Y') }}</td>
                                             <td>										                           
-                                             <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="" method="POST">
+                                             <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="{{ url('dashboard/entry-pembayaran', $value->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="" class="btn btn-primary">edit</a>
+                                                <a href="{{ url('dashboard/entry-pembayaran/'. $value->id .'/edit') }}" class="btn btn-primary">edit</a>
                                                 <button type="submit" name="submit" class="btn btn-danger d-inline">Delete</button>
                                               </form>
                                             </td>
