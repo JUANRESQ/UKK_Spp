@@ -62,14 +62,12 @@ class LoginController extends Controller
                     Session::put('nama', $nama);
                     
                     return redirect('dashboard/siswa/index');
-              else :
               
                     //  Alert::error('Gagal Login!', 'NISN dan nama siswa tidak sesuai');
                     return back()->with('gagal login', 'NISN dan nama siswa tidak sesuai' );
                     
               endif;
-              
-           else :
+            
             //   Alert::error('Gagal Login!', 'Data siswa dengan NISN ini tidak ditemukan');
               return back()->with('gagal login', 'Data siswa dengan NISN ini tidak ditemukan');
            endif;

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\PetugasController;
@@ -34,6 +35,7 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 Route::resource('/dashboard/data-petugas', PetugasController::class);
 Route::resource('/dashboard/entry-pembayaran', PembayaranController::class);
 Route::resource('/dashboard/history-pembayaran', HistoryController::class);
+Route::resource('/dashboard/data-kelas', KelasController::class);
 
 
 // isi siswa

@@ -3,17 +3,17 @@
 @section('judul')
 
 @section('content')
-	<div class="row">
+	<div class="container">
          <div class="col-md-12">
               <div class="card">
                   <div class="card-body">
-                       <div class="card-title">{{ __('Tambah Petugas') }}</div>
-                     
-                        <form method="post" action="{{ url('dashboard/data-petugas', $edit->id) }}" id="edit_data">
-                        
+                       <div class="card-title">Edit Petugas</div> 
+                       @if (session()->has('danger!'))
+                       <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('danger!') }}</div>
+                   @endif                
+                        <form method="post" action="{{ url('dashboard/data-petugas', $edit->id) }}">
                            @csrf
                            @method('put')
-                           
                            <div class="input-group mb-3">									
                         <div class="input-group-prepend">										
                            <label class="input-group-text">										 	
@@ -30,8 +30,8 @@
                
    
                            <div class="form-group">
-                              <label>Usernama</label>
-                              <input type="text" id="nama" class="form-control @error('usernama') is-invalid @enderror" name="usernama" value="{{ $edit->username}}">
+                              <label>Username</label>
+                              <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $edit->username}}">
                               <span class="text-danger">@error('usernama') {{ $message }} @enderror</span>
                            </div>
                            
@@ -43,23 +43,23 @@
                            
                            <div class="form-group">
                               <label>Password Baru (Opsional)</label>
-                              <input type="password" id="new_pass" class="form-control @error('password_baru') is-invalid @enderror" name="password_baru">
+                              <input type="password" id="password" class="form-control @error('password_baru') is-invalid @enderror" name="password">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
                            </div>
                            
                            <div class="form-group">
                               <label>Konfirmasi Password Baru</label>
-                              <input type="password" id="confirm_new_pass" class="form-control">
+                              <input type="password" id="confirm_new_pass" class="form-control" name="password_confirmation">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
                            </div>
-                           
-                           <input type="hidden" id="old_pass" name="old_pass" value="">
+
+                              <input type="hidden" id="old_pass" name="old_pass" value="">
                            
                            <a href="{{ url('dashboard/data-petugas') }}" class="btn btn-primary btn-rounded">
                               <i class="mdi mdi-chevron-left"></i> Kembali
                            </a>
                            
-                           <button type="button" class="btn btn-success btn-rounded float-right" onclick="buttonEdit()">
+                           <button type="submit" class="btn btn-success btn-rounded float-right">
                                  <i class="mdi mdi-check"></i> Simpan
                            </button>
                         

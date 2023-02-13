@@ -88,8 +88,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Siswa :</h6>
-                        <a class="collapse-item" href="cards.html">data siswa</a>
-                        <a class="collapse-item" href="buttons.html">Data kelas</a>
+                        <a class="collapse-item" href="dashboard/data-siswa">data siswa</a>
+                        <a class="collapse-item" href="/dashboard/data-kelas">Data kelas</a>
                         <a class="collapse-item" href="buttons.html">Data spp</a>
                     </div>
                 </div>

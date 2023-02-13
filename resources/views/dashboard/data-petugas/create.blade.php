@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="row">
+	<div class="container">
          <div class="col-md-12">
               <div class="card">
                   <div class="card-body">
@@ -50,6 +50,9 @@
                               <input type="password" id="konfirmasi_password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password">
                               <span class="text-danger">@error('confirm_password') {{ $message }} @enderror</span>
                            </div> --}}
+                           <a href="{{ url('dashboard/data-petugas') }}" class="btn btn-primary btn-rounded">
+                              <i class="mdi mdi-chevron-left"></i> Kembali
+                           </a>
                            <button type="submit" class="btn btn-success btn-rounded" onclick="button()">
                                  <i class="mdi mdi-check"></i> Simpan
                            </button>   

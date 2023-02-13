@@ -108,9 +108,29 @@ class PetugasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id) 
     {
-        //
+
+        if($update = User::find($id)) :
+            
+            if(Hash::check($req->old_pass, $update->password)) :
+                 
+               $update->update([
+                   'username' => $req->username,
+                   'nama_petugas' => $req->nama_petugas,
+                   'level' => $req->level,
+                //    'password' => $req->password_baru
+              ]);
+            
+            //   Alert::success('Berhasil!', 'Data Berhasil di Edit');
+              return redirect('dashboard/data-petugas')->with('Berhasil!', 'Data Berhasil di Edit');
+            
+        //    else :
+        //        Alert::error('Terjadi Kesalahan!', 'Password Anda tidak Cocok');
+            endif;
+         endif;
+        
+        return back()->with('danger!', 'Password Anda tidak Cocok');
     }
 
     /**
