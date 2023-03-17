@@ -79,23 +79,3 @@
 
 @endsection
 
-@section('sweet')
-
-function deleteData(id){
-  Swal.fire({
-           title: 'PERINGATAN!',
-           text: "Yakin ingin menghapus data Petugas?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yakin',
-            cancelButtonText: 'Batal',
-        }).then((result) => {
-           if (result.value) {
-                 $('#delete'+id).submit();
-              }
-           })
-}
-
-@endsection

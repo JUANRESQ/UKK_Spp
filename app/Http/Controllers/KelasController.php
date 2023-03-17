@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class KelasController extends Controller
 {
+    public function __construct(){
+        $this->middleware([
+           'auth',
+           'privilege:admin'
+        ]);
+   }
     /**
      * Display a listing of the resource.
      *
@@ -125,6 +131,7 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kelas::where('id', $id)->delete();
+        return back()->with('Berhasil!', 'data berhasil dihapus');
     }
 }

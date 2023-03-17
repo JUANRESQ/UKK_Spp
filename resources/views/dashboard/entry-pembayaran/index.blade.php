@@ -11,7 +11,9 @@
          <div class="card">
             <div class="card-body">
                <div class="card-title">Entri Pembayaran</div>
-               
+               @if (session()->has('Berhasil!'))
+               <div class="alert alert-success" role="alert">{{ session('Berhasil!') }}</div>
+           @endif
                 <form method="post" action="{{ url('dashboard/entry-pembayaran') }}">
                   @csrf
                   
@@ -80,7 +82,8 @@
                                             <th scope="col">SPP</th>
                                             <th scope="col">JUMLAH BAYAR</th>
                                             <th scope="col">TANGGAL BAYAR</th>
-								                    <th scope="col">ACTION</th>                                        
+								                    <th scope="col">Action</th>                                                                            
+								                    <th scope="col"></th>                                        
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,18 +100,19 @@
                                              <form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="{{ url('dashboard/entry-pembayaran', $value->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ url('dashboard/entry-pembayaran/'. $value->id .'/edit') }}" class="btn btn-primary">edit</a>
+                                              
                                                 <button type="submit" name="submit" class="btn btn-danger d-inline">Delete</button>
                                               </form>
                                             </td>
-											   </form>	
-                                                      
+											         </form>	            
                                 				</div>
                             				</div>								
-								                </td>					
+								                {{-- </td>
+                                        @if(auth()->user()->level == 'admin')
+                                        <td><a href="{{ url('dashboard/entry-pembayaran/'. $value->id .'/edit') }}" class="btn btn-primary">edit</a></td>
+                                        @endif					 --}}
                                         </tr>
-
-								@endforeach                                  
+								            @endforeach                                  
                                     </tbody>
                                 </table>
                             </div>
@@ -141,23 +145,3 @@
 
 @endsection
 
-@section('sweet')
-
-   function deleteData(id){
-      Swal.fire({
-               title: 'PERINGATAN!',
-               text: "Yakin ingin menghapus data SPP?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal',
-            }).then((result) => {
-               if (result.value) {
-                     $('#delete'+id).submit();
-                  }
-               })
-   }
-   
-@endsection

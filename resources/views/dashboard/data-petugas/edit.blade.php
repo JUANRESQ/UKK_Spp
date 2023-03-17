@@ -30,8 +30,14 @@
                
    
                            <div class="form-group">
+                              <label>Email</label>
+                              <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $edit->email}}">
+                              <span class="text-danger">@error('email') {{ $message }} @enderror</span>
+                           </div>
+
+                           <div class="form-group">
                               <label>Username</label>
-                              <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $edit->username}}">
+                              <input type="text" id="username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $edit->username}}" >
                               <span class="text-danger">@error('usernama') {{ $message }} @enderror</span>
                            </div>
                            
@@ -42,18 +48,20 @@
                            </div>
                            
                            <div class="form-group">
-                              <label>Password Baru (Opsional)</label>
-                              <input type="password" id="password" class="form-control @error('password_baru') is-invalid @enderror" name="password">
+                              <label for="password">Password Baru (Opsional)</label>
+                              <input type="password" id="password" class="form-control" name="password">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
                            </div>
                            
                            <div class="form-group">
-                              <label>Konfirmasi Password Baru</label>
-                              <input type="password" id="confirm_new_pass" class="form-control" name="password_confirmation">
+                              <label for="password_confirmation">Konfirmasi Password Baru</label>
+                              <input type="password" id="password_confirmation" class="form-control" name="password_confirmation">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
                            </div>
+                           <div class="form-group">
+                              <input type="hidden" id="old_pass" name="old_pass" class="form-control">
+                           </div>
 
-                              <input type="hidden" id="old_pass" name="old_pass" value="">
                            
                            <a href="{{ url('dashboard/data-petugas') }}" class="btn btn-primary btn-rounded">
                               <i class="mdi mdi-chevron-left"></i> Kembali

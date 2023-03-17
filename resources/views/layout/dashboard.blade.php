@@ -18,6 +18,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    
+    {{-- custom icons --}}
+    <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css') }}">
 
 </head>
 
@@ -30,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fa fa-solid fa-users"></i>
                 </div>
@@ -44,7 +47,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>History Terbaru</span></a>
+                    <span>Input Pembayaran</span></a>
             </li>
 
             @if (auth()->User()->level == 'admin')
@@ -88,9 +91,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Siswa :</h6>
-                        <a class="collapse-item" href="dashboard/data-siswa">data siswa</a>
+                        <a class="collapse-item" href="/dashboard/data-siswa">data siswa</a>
                         <a class="collapse-item" href="/dashboard/data-kelas">Data kelas</a>
-                        <a class="collapse-item" href="buttons.html">Data spp</a>
+                        <a class="collapse-item" href="/dashboard/data-spp">Data spp</a>
                     </div>
                 </div>
             </li>        
@@ -260,6 +263,12 @@
         </div>
     </div>
 
+    <script>
+        @yield('sweet')
+
+        @yield('js')
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

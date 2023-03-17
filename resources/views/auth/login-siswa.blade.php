@@ -41,22 +41,23 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
+                                    @if (session()->has('gagal login'))
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('gagal login') }}</div>
+                                    @endif 
                                     <form action="/loginsiswa" method="POST">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="nisn" name="nisn"
-                                                placeholder="masukan nisn anda">
+                                                id="nisn" name="nisn" placeholder="masukan NISN anda">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user @error('nama') is-invalid @enderror"
-                                            id="nama" name="nama" placeholder="masukan nama anda">
-                                            @error('nama')
-                                                 <span class="invalid-feedback" role="alert">
-                                                 <strong>{{ $message }}</strong>
-                                                 </span>
-                                            @enderror
+                                            <input type="password" class="form-control form-control-user"
+                                             name="nis" placeholder="masukan NIS anda" id="nis">
                                         </div>
+                                        {{-- <div class="form-group">
+                                            <input type="text" class="form-control form-control-user"
+                                             name="nama" placeholder="masukan Nama anda" id="nama">
+                                        </div> --}}
                                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                                         <hr>
                                     </form>

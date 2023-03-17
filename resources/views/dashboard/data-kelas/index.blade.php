@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="d-flex mr-5">
+	<div class="d-flex mr-5 mb-3">
          <div class="row-md-12">
               <div class="card">
                   <div class="card-body">
@@ -109,23 +109,3 @@
 
 @endsection
 
-@section('sweet')
-
-   function deleteData(id){
-      Swal.fire({
-               title: 'PERINGATAN!',
-               text: "Yakin ingin menghapus data kelas?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal',
-            }).then((result) => {
-               if (result.value) {
-                     $('#delete'+id).submit();
-                  }
-               })
-   }
-   
-@endsection

@@ -57,11 +57,14 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Password">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                        <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+                                        {{-- <a href="/auth/redirect" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a> --}}
                                         <hr>
                                     </form>
                                     <div class="text-center">
-                                       <p>apakah anda siswa <a class="small text-decoration-none" href="/"> Kembali</a></p>
+                                       <p>apakah anda siswa <a class="small text-decoration-none" href="login"> Kembali</a></p>
                                     </div>
                                 </div>
                             </div>

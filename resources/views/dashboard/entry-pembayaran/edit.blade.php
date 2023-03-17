@@ -50,7 +50,6 @@
                      </div>
                      <span class="text-danger">@error('spp_bulan') {{ $message }} @enderror</span>
                   
-                     
                      <div class="form-group">
                        <label>Jumlah Bayar</label>
                        <input type="text" class="form-control @error('jumlah_bayar') is-invalid @enderror" name="jumlah_bayar" value="{{ $edit->jumlah_bayar }}">

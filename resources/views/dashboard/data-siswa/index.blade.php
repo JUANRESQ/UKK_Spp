@@ -9,11 +9,14 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="card-title">Data Siswa</div>
-                              {{-- <a href="{{ url('dashboard/data-siswa/create') }}" class="btn btn-success btn-rounded float-right mb-3">
+					@if (session()->has('Berhasil!'))
+					<div class="alert alert-success alert-dismissible fade show" role="alert">{{ session('Berhasil!') }}</div>
+					@endif
+                              <a href="{{ url('dashboard/data-siswa/create') }}" class="btn btn-success btn-rounded float-right mb-3">
                                  <i class="mdi mdi-plus-circle"></i> {{ __('Tambah Siswa') }}
-                              </a> --}}
+                              </a>
 						<div class="table-responsive mb-3">
-                                <table class="table">
+                                <table class="table ml-3">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -23,6 +26,7 @@
                                             <th scope="col">KELAS</th>
 								            <th scope="col">NOMOR TELEPON</th>
 								            <th scope="col">ALAMAT</th>
+								            <th scope="col">ACTION</th>                                        
 								            <th scope="col">ACTION</th>                                        
                                         </tr>
                                     </thead>
@@ -36,17 +40,16 @@
                                             <td>{{ $value->kelas->nama_kelas }}</td>
 								            <td>{{ $value->nomor_telp }}</td>
 								            <td>{{ $value->alamat }}</td>
-                                            <td>										                           
-											
-											</form>																																																
-                                        			                    							                                                                            
-                                				</div>
-                            				</div>								
-								    </td>					
+                                            <td>										                           	
+												<form onsubmit="return confirm('Yakin Anda akan menghapus data?')" action="{{ url('dashboard/data-siswa', $value->id) }}"  method="POST">
+													@csrf
+													@method('DELETE')
+													
+													<button type="submit" name="submit" class="btn btn-danger">Delete</button>
+												  </form>							
+								            </td>
+											<td><a href="{{ url('dashboard/data-siswa/'. $value->id .'/edit') }}" class="btn btn-primary">edit</a></td>					
                                         </tr>
-								@php
-								$i++;
-								@endphp
 								@endforeach                                  
                                     </tbody>
                                 </table>
@@ -78,23 +81,3 @@
 
 @endsection
 
-@section('sweet')
-
-   function deleteData(id){
-      Swal.fire({
-               title: 'PERINGATAN!',
-               text: "Yakin ingin menghapus data siswa? data pembayaran atas nama siswa ini pun akan dihapus jika ada.",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yakin',
-                cancelButtonText: 'Batal',
-            }).then((result) => {
-               if (result.value) {
-                     $('#delete'+id).submit();
-                  }
-               })
-   }
-   
-@endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Spp;
 use App\Models\User;
 use App\Models\Siswa;
 use App\Models\Pembayaran;
@@ -9,6 +10,12 @@ use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
 {
+    public function __construct(){
+        $this->middleware([
+           'auth',
+           'privilege:admin&petugas'
+        ]);
+   }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +24,7 @@ class PembayaranController extends Controller
     public function index()
     {
         $data = [
-            'pembayaran' => Pembayaran::orderBy('id', 'DESC')->paginate(10),
+            'pembayaran' => Pembayaran::orderBy('id', 'DESC')->paginate(6),
             'user' => User::find(auth()->user()->id)
         ];
       
@@ -99,7 +106,8 @@ class PembayaranController extends Controller
     {
         $data = [
             'edit' => Pembayaran::find($id),
-            'user' => User::find(auth()->user()->id)
+            'user' => User::find(auth()->user()->id),
+            // 'siswa' => Spp::find($id)
          ];
          
          return view('dashboard.entry-pembayaran.edit', $data);

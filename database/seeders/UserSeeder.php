@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'email'    => 'admin@gmail.com',
             'username' => 'admin',
             'password' => Hash::make('admin'),
             'nama_petugas' => 'dimas',
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
          ]);
          
          User::create([
+            'email'    => 'petugas@gmail.com',
             'username' => 'petugas',
             'password' => Hash::make('petugas'),
             'nama_petugas' => 'paiz',

@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
+    public function __construct(){
+        $this->middleware([
+           'auth',
+           'privilege:admin'
+        ]);
+   }
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +26,7 @@ class SiswaController extends Controller
     {
         $data = [
             'user' => User::find(auth()->user()->id),
-            'siswa' => Siswa::orderBy('id', 'DESC')->paginate(10),
+            'siswa' => Siswa::orderBy('id', 'DESC')->paginate(5),
         ];
       
         return view('dashboard.data-siswa.index', $data);
@@ -57,8 +63,8 @@ class SiswaController extends Controller
          ];
          
         $validasi = $request->validate([
-            'nisn' => 'required|numeric',
-            'nis' => 'required|numeric',
+            'nisn' => 'required|numeric|',
+            'nis' => 'required|numeric|',
             'nama' => 'required',
              'kelas' => 'required|integer',
              'nomor_telepon' => 'required|numeric',
@@ -77,13 +83,13 @@ class SiswaController extends Controller
                'id_spp' => $request->spp
              ]);
               if($store) :
-                  Alert::success('Berhasil!', 'Data Berhasil di Tambahkan');
+                return redirect('dashboard/data-siswa')->with('Berhasil!', 'Data Berhasil di Tambahkan');
                else :
-                  Alert::error('Terjadi Kesalahan!', 'Data Gagal di Tambahkan');
+                  return back()->with('Terjadi Kesalahan!', 'Data Gagal di Tambahkan');
                endif;
         endif;
       
-        return redirect('dashboard/data-siswa');
+       ;
     }
 
     /**
@@ -131,8 +137,8 @@ class SiswaController extends Controller
          ];
          
         $validasi = $request->validate([
-            'nisn' => 'required|numeric',
-            'nis' => 'required|numeric',
+            'nisn' => 'required|numeric|',
+            'nis' => 'required|numeric|',
             'nama' => 'required',
              'kelas' => 'required|integer',
              'nomor_telepon' => 'required|numeric',
@@ -154,9 +160,9 @@ class SiswaController extends Controller
              
              
               if($update) :
-                  Alert::success('Berhasil!', 'Data Berhasil di Edit');
+                return redirect('dashboard/data-siswa')->with('Berhasil!', 'Data Berhasil di Edit');
                else :
-                  Alert::error('Terjadi Kesalahan!', 'Data Gagal di Edit');
+                  return back()->with('Terjadi Kesalahan!', 'Data Gagal di Edit');
                endif;
         endif;
       
@@ -172,6 +178,6 @@ class SiswaController extends Controller
     public function destroy($id)
     {
         Siswa::where('id', $id)->delete();
-        return back()->with('true', 'data berhasil dihapus');
+        return back()->with('Berhasil!', 'data berhasil dihapus');
     }
 }
