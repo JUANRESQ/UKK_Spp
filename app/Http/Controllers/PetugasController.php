@@ -61,12 +61,14 @@ class PetugasController extends Controller
        $req->validate([
           'level' => 'required',
           'usernama' => 'required|min:2',
+          'email' => 'required',
           'nama_petugas' => 'required|',
           'password' => 'required|min:8'
        ], $messages);
        
               if(User::create([
                    'username' => $req->usernama,
+                   'email' => $req->email,
                    'nama_petugas' => $req->nama_petugas,
                    'level' => $req->level,
                    'password' => Hash::make($req->password)
@@ -119,13 +121,14 @@ class PetugasController extends Controller
 
         if($update = User::find($id)) :
             
-            if(Hash::check($req->old_pass, $update->password)) :
+            // if(Hash::check($req->old_pass, $update->old_pass)) :
                  
                $update->update([
                    'username' => $req->username,
+                   'email' => $req->email,
                    'nama_petugas' => $req->nama_petugas,
                    'level' => $req->level,
-                //    'password' => $req->password_baru
+                //    'password' => $req->password
               ]);
             
             //   Alert::success('Berhasil!', 'Data Berhasil di Edit');
@@ -133,7 +136,7 @@ class PetugasController extends Controller
             
         //    else :
         //        Alert::error('Terjadi Kesalahan!', 'Password Anda tidak Cocok');
-            endif;
+            // endif;
          endif;
         
         return back()->with('danger!', 'Password Anda tidak Cocok');

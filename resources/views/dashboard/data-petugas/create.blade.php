@@ -32,6 +32,11 @@
                               <input type="text" id="usernama" class="form-control @error('usernama') is-invalid @enderror" name="usernama" value="{{ old('usernama') }}">
                               <span class="text-danger">@error('usernama') {{ $message }} @enderror</span>
                            </div>
+                           <div class="form-group">
+                              <label>email</label>
+                              <input type="email" id="email" class="form-control @error('usernama') is-invalid @enderror" name="email" value="{{ old('usernama') }}">
+                              <span class="text-danger">@error('usernama') {{ $message }} @enderror</span>
+                           </div>
                            
                            <div class="form-group">
                               <label>nama Petugas</label>
@@ -65,7 +70,7 @@
 
 @endsection
 
-@section('sweet')
+{{-- @section('sweet')
 
     function button()
    {
@@ -85,4 +90,4 @@
          }
    }
    
-@endsection
+@endsection --}}

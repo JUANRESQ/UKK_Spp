@@ -47,7 +47,7 @@
                               <span class="text-danger">@error('nama_petugas') {{ $message }} @enderror</span>
                            </div>
                            
-                           <div class="form-group">
+                           {{-- <div class="form-group">
                               <label for="password">Password Baru (Opsional)</label>
                               <input type="password" id="password" class="form-control" name="password">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
@@ -57,7 +57,7 @@
                               <label for="password_confirmation">Konfirmasi Password Baru</label>
                               <input type="password" id="password_confirmation" class="form-control" name="password_confirmation">
                               <span class="text-danger">@error('password_baru') {{ $message }} @enderror</span>
-                           </div>
+                           </div> --}}
                            <div class="form-group">
                               <input type="hidden" id="old_pass" name="old_pass" class="form-control">
                            </div>

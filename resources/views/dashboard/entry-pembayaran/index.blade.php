@@ -91,7 +91,7 @@
                                         <tr>					    
                                           <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $value->users->username }}</td>
-								                    <td>{{ $value->siswa->nisn }}</td>
+						        <td>{{ $value->siswa->nisn }}</td>
                                             <td>{{ $value->siswa->nama }}</td>
                                             <td>{{ $value->siswa->spp->nominal }}</td>
                                             <td>{{ $value->jumlah_bayar }}</td>

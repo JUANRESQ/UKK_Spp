@@ -12,17 +12,17 @@
                      <div class="border-top">
                         <div class="float-right">
                            @if (count($pembayaran) == 0)
-                           <i class="fa fa-solid fa-check"></i> {{ $value->created_at->format('d M, Y') }}
+                           <i class="fa fa-solid fa-check"></i> {{ $value->updated_at->format('d M, Y') }}
                            @endif
                            <i class="fa fa-solid fa-bookmark"></i> {{ $value->created_at->format('d M, Y') }}
                         </div>
                         <div class="mt-4 text-uppercase">
                            {{ $value->siswa->nama .' - '. $value->siswa->kelas->nama_kelas }}
                         </div>
-                           <div>SPP Bulan <b class="text-capitalize">{{ $value->spp_bulan }}</b></div>
-                           <div>Nominal SPP Rp.{{ $spp = $value->siswa->spp->nominal }}</div>
-                           <div>Bayar Rp.{{ $bayar = $value->jumlah_bayar }}</div>
-                           <div>Tunggakan Rp.{{ $spp - $bayar }}</div>                        
+                           <div>SPP Bulan : <b class="text-capitalize">{{ $value->spp_bulan }}</b></div>
+                           <div>Nominal SPP : Rp.{{ $spp = $value->siswa->spp->nominal }}</div>
+                           <div>Bayar : Rp.{{ $bayar = $value->jumlah_bayar }}</div>
+                           <div>Tunggakan : Rp.{{ $spp - $bayar }}</div>                        
                      </div>
                   @endforeach 
                          <!-- Pagination -->

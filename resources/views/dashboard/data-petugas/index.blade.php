@@ -20,7 +20,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">NAMA</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">nama</th>
+                                        <th scope="col">Email</th>
                                         <th scope="col">LEVEL</th>
                                         <th scope="col">DIBUAT</th>
                                         <th scope="col">ACTION</th>
@@ -32,6 +34,8 @@
                                     <tr>					    
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $value->username }}</td>
+                                        <td>{{ $value->nama_petugas }}</td>
+                                        <td>{{ $value->email }}</td>
                                         <td>{{ $value->level }}</td>
                                         <td>{{ $value->created_at->format('d M, Y') }}</td>
                                         <td>										                           
