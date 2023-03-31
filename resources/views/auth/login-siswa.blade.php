@@ -19,10 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-danger">
 
     <div class="container">
 
@@ -34,35 +35,41 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido</h1>
                                     </div>
                                     @if (session()->has('gagal login'))
                                     <div class="alert alert-danger alert-dismissible fade show" role="alert">{{ session('gagal login') }}</div>
                                     @endif 
-                                    <form action="/loginsiswa" method="POST">
+                                    <form action="/loginsiswa" method="post">
                                         @csrf
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="nisn" name="nisn" placeholder="masukan NISN anda">
+                                        <div class="imgcontainer">
+                                          
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                             name="nis" placeholder="masukan NIS anda" id="nis">
+                                      
+                                        <div class="container">
+                                          <label for="uname"><b>Username</b></label>
+                                          <input type="text" placeholder="Enter Username" name="nisn" required>
+                                      
+                                          <label for="psw"><b>Password</b></label>
+                                          <input type="password" placeholder="Enter Password" name="nis" required>
+                                      
+                                          <button type="submit">Login</button>
+                                          <label>
+                                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                                          </label>
                                         </div>
-                                        {{-- <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                             name="nama" placeholder="masukan Nama anda" id="nama">
-                                        </div> --}}
-                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        <hr>
-                                    </form>
+                                      
+                                        <div class="container" style="background-color:#f1f1f1">
+                                          <button type="button" class="cancelbtn">Cancel</button>
+                                          <span class="psw">Forgot <a href="#">password?</a></span>
+                                        </div>
+                                      </form>
                                     <div class="text-center">
-                                        <p>apakah anda admin/petugas<a class="small text-decoration-none" href="/login"> Kembali</a></p>
+                                        <p>apakah anda admin/petugas<a class="small text-decoration-none" href="/login "> Kembali</a></p>
                                     </div>
                                 </div>
                             </div>

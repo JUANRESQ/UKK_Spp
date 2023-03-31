@@ -17,7 +17,7 @@ class CreateSiswaTable extends Migration
             $table->bigIncrements('id');
             $table->char('nisn', 12);
             $table->char('nis', 8);
-            $table->string('nama', 35);
+            $table->string('nama', 100);
             $table->foreignId('id_kelas');
             $table->text('alamat');
             $table->string('nomor_telp');

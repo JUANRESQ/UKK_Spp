@@ -19,10 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-info">
 
     <div class="container">
 
@@ -34,37 +35,35 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Selamat Datang !</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido !</h1>
                                     </div>
-                                    <form action="login" method="POST">
+                                    <form action="/login" method="post">
                                         @csrf
-                                        {{-- @if (session()->has('salah'))
-                                        <div class="alert alert-danger" role="alert">
-                                            username atau password yang anda masukkan salah
+                                        <div class="imgcontainer">
+                                          <img src="img/tutu.webp" alt="Avatar" class="avatar">
                                         </div>
-                                        @endif  --}}
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="username" name="username" autocomplete="off"
-                                                placeholder="Enter username Address...">
+                                      
+                                        <div class="container">
+                                          <label for="uname"><b>Username</b></label>
+                                          <input type="text" placeholder="Enter Username" name="username" required>
+                                      
+                                          <label for="password"><b>Password</b></label>
+                                          <input type="password" placeholder="Enter Password" name="password" required>
+                                      
+                                          <button type="submit">Login</button>
+                                          <label>
+                                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                                          </label>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Password">
+                                        <div class="container" style="background-color:#f1f1f1">
                                         </div>
-                                        <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
-                                        {{-- <a href="/auth/redirect" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a> --}}
-                                        <hr>
-                                    </form>
+                                      </form>
                                     <div class="text-center">
-                                       <p>apakah anda siswa <a class="small text-decoration-none" href="login"> Kembali</a></p>
+                                       <p>apakah anda siswa <a class="small text-decoration-none" href="/   "> Kembali</a></p>
                                     </div>
                                 </div>
                             </div>
